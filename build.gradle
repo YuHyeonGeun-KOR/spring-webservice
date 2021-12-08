@@ -1,0 +1,37 @@
+buildscript {
+    ext{                //빌드 그레이들에서 사용하는 전역변수 설정
+        springBootVersion = '2.1.7.RELEASE'  //springBootVersion을 전역변수로 생성하고 그 값을 2.1.7로 하겠다.
+    }                                         //스프링부트 그레이들 플러그인의 2.1.7을 의존성으로 받겠다.
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+plugins {
+    id 'java'
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성들을 관리해주는 플러그인
+
+group 'com.jolbook'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnitPlatform()
+}
